@@ -27,6 +27,7 @@ while my_game.is_still_ongoing? == true
 	my_game.menu
 	my_game.menu_choice
 	my_game.enemies_attack
+	
 end
 
 my_game.end

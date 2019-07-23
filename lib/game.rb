@@ -38,10 +38,11 @@ class Game
 		puts "a - chercher une meilleure arme"
 		puts "s - chercher à se soigner\n\n"
 		puts "Attaquer un joueur en vue:"
-		puts "0 - #{@enemies[0].show_state}"
-		puts "1 - #{@enemies[1].show_state}"
-		puts "2 - #{@enemies[2].show_state}"
-		puts "3 - #{@enemies[3].show_state}\n\n"
+		@i = 0
+	    @enemies.each do
+	      puts "#{@i} - #{@enemies[@i].show_state}"
+	     @i +=1
+	     end
 		
 	end
 
@@ -83,7 +84,7 @@ class Game
 
 	def enemies_attack
 
-		if @enemies[0].life_points > 0 || @enemies[1].life_points >0 || @enemies[2].life_points > 0 || @enemies[3].life_points>0
+		if is_still_ongoing?
 			puts "Les autres joueurs t'attaquent!!!"
 			@enemies.each do |enemy|
 				if enemy.life_points > 0
