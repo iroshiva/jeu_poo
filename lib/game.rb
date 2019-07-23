@@ -29,8 +29,10 @@ class Game
 	end
 
 	def show_player
+		puts "________________________________________________"
 		@human_player.show_state
 		puts "Il reste encore #{@enemies.length} ennemies!"
+		puts "________________________________________________"
 	end
 
 	def menu
@@ -47,6 +49,7 @@ class Game
 	end
 
 	def menu_choice
+		puts " "
 		puts "Le temps presse.... Balance ton choix!"
 		print "> "
 		choice = gets.chomp
@@ -85,7 +88,9 @@ class Game
 	def enemies_attack
 
 		if is_still_ongoing?
+			puts " "
 			puts "Les autres joueurs t'attaquent!!!"
+			puts " "
 			@enemies.each do |enemy|
 				if enemy.life_points > 0
 					enemy.attacks(@human_player)	
