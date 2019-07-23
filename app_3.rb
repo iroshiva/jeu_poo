@@ -18,9 +18,6 @@ print "> "
 user_name = gets.chomp
 my_game = Game.new(user_name)
 
-# while is_still_ongoing? = true
-
-
 while my_game.is_still_ongoing? == true
 
 	my_game.show_player

@@ -3,20 +3,25 @@ require 'pry'
 Bundler.require
 
 require_relative './player'
+# requiert player.rb
 
 
 class Game
+# création d'une classe générale Game
 	
 	attr_accessor :human_player, :enemies
+	# variables d'instance human_player et enemies
 
 	def initialize(name)
-		@human_player = HumanPlayer.new("#{name}")
+	# initialisation de la classe pour chaque instance
+	# chaque instance créée, donc chaque Game.new, auront les variables human_player et enemies
+
+		@human_player = HumanPlayer.new(name)
 		@enemies = [player1 = Player.new("Riri"), player2 = Player.new("Fifi"), player3 = Player.new("Loulou"), player4 = Player.new("Picsou")]
 	end
 
 	def kill_player(enemy)
 		@enemies.delete(enemy)
-		# @enemies.reject {|enemy| enemy.life_points < 0}
 	end
 
 	def is_still_ongoing?
@@ -24,8 +29,7 @@ class Game
 			true
 		else
 			false
-		end
-		
+		end	
 	end
 
 	def show_player
@@ -36,6 +40,7 @@ class Game
 	end
 
 	def menu
+		puts " "
 		puts "Quelle action veux-tu effectuer ?\n\n"
 		puts "a - chercher une meilleure arme"
 		puts "s - chercher à se soigner\n\n"
@@ -43,8 +48,8 @@ class Game
 		@i = 0
 	    @enemies.each do
 	      puts "#{@i} - #{@enemies[@i].show_state}"
-	     @i +=1
-	     end
+	    	@i +=1
+	    end
 		
 	end
 
@@ -101,14 +106,15 @@ class Game
 
 	def end
 		if @human_player.life_points >0
-		puts"BRAVO! TU AS GAGNE!"
+			puts " "
+			puts"CHAMPIIIIOOOOOOOOONNNNNN! TU AS GAGNE!"
 		
 		else
-			puts "Loser! Tu as perdu!"
+			puts " "
+			puts "BOOOUUUUUHHH! Loser! Tu as perdu!"
 		end
 	end
-
-
+	
 end
 
 # binding.pry
