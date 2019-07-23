@@ -1,8 +1,8 @@
 require "pry"
 
-def Game
+class Game
 	
 end
 
-binding.pry
-puts "end of file"
+# binding.pry
+# puts "end of file"
