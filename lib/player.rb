@@ -64,11 +64,11 @@ class Player
 	def compute_damage
 	# methode spécifique dite d'instance == joue sur l'instance créée
 	# pas d'entrée
-	# sort, mais n'affiche pas (pas de puts), le niveau de dommages du joueur en entrée
+	# sort, mais n'affiche pas (pas de puts), le niveau de dommages
 
 		return rand(1..6)
 		# retourne, au hasard, un chiffre entre 1 et 6 qui dictera le niveau de dommage
-		
+
 	end
 	
 end
@@ -76,66 +76,112 @@ end
 # binding.pry
 # puts "end of file"
 
-# class HumanPlayer < Player
-# # la class HumanPlayer va hérité de Player, cad que chaque instance de HumanPlayer aura un nom et un life_points + les méthodes spécifiques
+class HumanPlayer < Player
+# la class HumanPlayer va hérité de Player, cad que chaque instance de HumanPlayer aura un nom et un life_points + les méthodes spécifiques
 
-# 	attr_accessor :weapon_level
+	attr_accessor :weapon_level
+	# ajout d'une variable d'instance, valable uniquement pour les objets de la classe HumanPlayer
 
-# 	def initialize(nom)
-# 		@name = nom 
-# 		@life_points = 100
-# 		@weapon_level = 1
-# 	end
+	def initialize(nom)
+	# initie une méthode classe qui va assigner les variables d'instance @weapon_level, @name et @life_points à chaque instance créée == chaque joueur créé == chaque objet créé
+	# prend une entrée (nom) qui aura la valeur définit lors de la création de chaque instance : player1 = Player.new(nom)
 
-# 	def show_state
-# 	# methode spécifique 
-# 		puts "#{@name} a #{@life_points} points de vie et une arme de niveau #{@weapon_level}"
-# 	end
+		@name = nom 
+		@life_points = 100
+		# cette variable est fixée à 100 == uniquement valable pour les objets de cette classe
 
-# 	def compute_damage
-#     	rand(1..6) * @weapon_level
-#   end
+		@weapon_level = 1
+		# variable d'instance de la classe HumanPlayer initiée à 1
 
-# 	def search_weapon
-# 		new_weapon_level = rand(1..6)
-# 		puts " "
-# 		puts "Tu as trouvé une arme de niveau #{new_weapon_level}!"
+	end
 
-# 		if new_weapon_level > @weapon_level
-# 			puts "Youhou ! Elle est meilleure que ton arme actuelle : Tu la prends!"
-# 			@weapon_level = new_weapon_level
-# 			puts "Tu as maintenant une arme de niveau #{@weapon_level}!"
-# 		else 
-# 			puts "M@*#$... elle n'est pas mieux que ton arme actuelle... autant garder la même!"
-# 		end
+	def show_state
+	# idem classe Player, MAIS pour la classe HumanPlayer
 
-# 	end
+		puts " "
+		puts "#{@name} a #{@life_points} points de vie et une arme de niveau #{@weapon_level}"
+	end
 
-# 	def search_health_pack
-# 		health_pack_level = rand(1..6)
+	def compute_damage
+	# methode spécifique dite d'instance == joue sur l'instance créée
+	# pas d'entrée
+	# sort, le niveau de dangerosité de l'arme
 
-# 		case health_pack_level
+    rand(1..6) * @weapon_level
+  end
 
-# 		when 1
-# 			 puts "Tu n'as rien trouvé... " 
-# 		when 2..5
-# 			 puts "Bravo, tu as trouvé un pack de +50 points de vie !"
-# 			@life_points += 50
-# 		when 6
-# 			 puts "Waow, tu as trouvé un pack de +80 points de vie ! Tu déchires!!!"
-# 			@life_points += 80
-# 		end
+	def search_weapon
+	# methode spécifique dite d'instance == joue sur l'instance créée
+	# pas d'entrée
+	# sort, le niveau de dangerosité de l'arme
 
-# 		life_points_limit
+		new_weapon_level = rand(1..6)
+		# donne un nouveau niveau de l'arme
 
-# 	end
+		puts " "
+		puts "Tu as trouvé une arme de niveau #{new_weapon_level}!"
 
-# 	def life_points_limit
-# 		if @life_points > 100
-# 			@life_points = 100
-# 			puts "Malheureusement, ton niveau de vie ne peux pas dépasser 100! Faut pas abuser! ;)"
-# 		end	
-# 	end
+		if new_weapon_level > @weapon_level
+		# si le nouveau niveau de l'arme trouvée == niveau de l'arme actuelle
+
+			puts "Youhou ! Elle est meilleure que ton arme actuelle: tu la prends!"
+			@weapon_level = new_weapon_level
+			puts "Tu as maintenant une arme de niveau #{@weapon_level}!"
+		else
+		# sinon 
+
+			puts "Pas de bol... elle n'est pas mieux que ton arme actuelle... autant garder la même!"
+		end
+
+	end
+
+	def search_health_pack
+	# methode spécifique dite d'instance == joue sur l'instance créée
+	# pas d'entrée
+	# affiche ce que tu fais du pack health trouvée
+
+		health_pack_level = rand(1..6)
+		# dé virtuel qui définit la "valeur" de ton pack health
+
+		case health_pack_level
+		# au cas
+		when 1
+		# où
+			puts " "
+			puts "Tu n'as rien trouvé... " 
+			# alors
+		when 2..5
+		# où
+			puts " "
+			puts "Bravo, tu as trouvé un pack de +50 points de vie !"
+			@life_points += 50
+			# alors
+		when 6
+		# où
+			puts " "
+			puts "Waow, tu as trouvé un pack de +80 points de vie ! Tu déchires!!!"
+			@life_points += 80
+			#alors
+		end
+
+		life_points_limit
+		# à la fin, application de la méthode life_points_limit
+
+	end
+
+	def life_points_limit
+	# methode spécifique dite d'instance == joue sur l'instance créée
+	# pas d'entrée
+	# sort le fait que les life_points ne doivent pas dépsser 100
+
+		if @life_points > 100
+			@life_points = 100
+			puts "Malheureusement, ton niveau de vie ne peux pas dépasser 100! Faut pas abuser! ;)"
+		end	
+	end
 
 
-# end
+end
+
+# binding.pry
+# puts "end of file"
